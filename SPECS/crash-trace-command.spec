@@ -3,19 +3,20 @@
 Summary: Trace extension module for the crash utility
 Name: crash-trace-command
 Version: 3.0
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2
 Source: https://github.com/fujitsu/crash-trace/archive/v%{version}/%{name}-%{version}.tar.gz
 URL: https://github.com/fujitsu/crash-trace
 ExclusiveOS: Linux
 ExclusiveArch: aarch64 ppc64le s390x x86_64
-BuildRequires: crash-devel >= 7.2.0-2
+BuildRequires: crash-devel >= 8.0.4-1
 BuildRequires: gcc
 Requires: trace-cmd
-Requires: crash >= 7.2.0-2
+Requires: crash >= 8.0.4-1
 
 Patch0001: 0001-Makefile-set-DT_SONAME-to-trace.so.patch
 Patch0002: 0002-Makefile-fix-build-failure-on-aarch64-and-ppc64le.patch
+Patch0003: 0003-trace-Support-module-memory-layout-change-on-Linux-6.patch
 
 %description
 Command for reading ftrace data from a dump file.
@@ -37,6 +38,9 @@ install -m 0755 -t %{buildroot}%{_libdir}/crash/extensions %{_builddir}/%{repona
 %license COPYING
 
 %changelog
+* Mon Nov 20 2023 Lianbo Jiang <lijiang@redhat.com> - 3.0-7
+- Support module memory layout change on Linux 6.4
+
 * Wed Dec 15 2021 Lianbo Jiang <lijiang@redhat.com> - 3.0-6
 - Rebuild for the compatibility issue
 
